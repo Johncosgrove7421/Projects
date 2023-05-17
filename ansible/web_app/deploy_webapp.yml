@@ -1,0 +1,22 @@
+---
+- name: Deploy web application
+  hosts: web_servers
+  tasks:
+    - name: Install dependencies
+      apt:
+        name: apache2
+        state: present
+
+
+    - name: Copy web application files
+      copy:
+        src: /path/to/webapp
+        dest: /var/www/html
+
+
+    - name: Ensure Apache is running
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+        
